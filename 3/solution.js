@@ -6,7 +6,6 @@
  * @return {number}
  */
 
-
 /**
  *  just use left point and right point to keep slide window
  *  1. right ++
