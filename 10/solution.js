@@ -10,20 +10,15 @@
  * @return {number}
  */
 // double point
-// var maxArea = function (height) {
-//     let l = 0
-//     let r = l + 1
-//     let max = 0
-//     let space = 0
-//     while (r < height.length) {
-//         if (height[l] === height[r]) {
-//             space = (r - l + 1) * height[l]
-//         }
-//         r++;
-//         if (space > max) {
-//             max = space
-//         }
-//     }
-//     return max
-// };
-// console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]))
+var maxArea = function (height) {
+    let l = 0;
+    let r = height.length - 1
+    let res = 0
+    while (l < r) {
+        res = height[l] < height[r] ?
+            Math.max(res, (r - l) * height[l++]) :
+            Math.max(res, (r - l) * height[r--])
+    }
+    return res
+};
+console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]))
