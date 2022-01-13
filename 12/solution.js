@@ -15,29 +15,18 @@
 // I can be placed before V (5) and X (10) to make 4 and 9. 
 // X can be placed before L (50) and C (100) to make 40 and 90. 
 // C can be placed before D (500) and M (1000) to make 400 and 900.
-// Given a roman numeral, convert it to an integer.
+// Given an integer, convert it to a roman numeral.
 
 /**
- *  @param {string} s
- * @return {integer}
+ * @param {number} num
+ * @return {string}
  */
-var romanToInt = function (s) {
-    const roman = { 'M': 1000, 'D': 500, 'C': 100, 'L': 50, 'X': 10, 'V': 5, 'I': 1 }
-    let res = 0
-    for (let i = 0; i < s.length; i++) {
-        if (roman[s[i]] < roman[s[i + 1]]) {
-            res -= roman[s[i]]
-        } else {
-            res += roman[s[i]]
-        }
-    }
-    return res
-    // z = 0
-    // for i in range(0, len(s) - 1):
-    //     if roman[s[i]] < roman[s[i+1]]:
-    //         z -= roman[s[i]]
-    //     else:
-    //         z += roman[s[i]]
-    // return z + roman[s[-1]]
+
+var intToRoman = function (num) {
+    const M = ["", "M", "MM", "MMM"];
+    const C = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"];
+    const X = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"];
+    const I = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"];
+    return M[parseInt(num / 1000)] + C[parseInt((num % 1000) / 100)] + X[parseInt((num % 100) / 10)] + I[num % 10];
 };
-console.log(romanToInt('MCD'))
+console.log(intToRoman(3))

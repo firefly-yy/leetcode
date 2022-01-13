@@ -24,7 +24,12 @@ const printListNode = (list) => {
     console.log(result)
 }
 
+// 数组去重
+const unique(arr) => {
+    return Array.from(new Set(arr))
+}
 module.exports = {
     getListFromArray,
-    printListNode
+    printListNode,
+    unique
 }
