@@ -21,46 +21,25 @@
  * @return {string[]}
  */
 
-// const DIGIT_TO_LETTERS = {
-//     2: 'abc',
-//     3: 'def',
-//     4: 'ghi',
-//     5: 'jkl',
-//     6: 'mno',
-//     7: 'pqrs',
-//     8: 'tuv',
-//     9: 'wxyz',
-// }
-// /**
-//  * @param {string} digits
-//  * @return {Array<string>}
-//  */
-// function letterCombinations(digits) {
-//     // Handles edge case.
-//     if (digits == "") {
-//         return [];
-//     }
-//     const output = [];
-//     findCombinations(digits, 0, '', output);
-//     return output;
-// };
-// /**
-//  * @param {string} digits
-//  * @param {Number} index
-//  * @param {string] prefix The first part of the output string.
-//  * @param {Array<string>} The output array that will be modified.
-//  */
 
-// function findCombinations(digits, index, prefix, output) {
-//     // Handles terminal condition.
-//     if (index == digits.length) {
-//         output.push(prefix);
-//         return;
-//     }
+function letterCombinations(digits) {
+    let res = [];
+    if (!digits) return [];
+    let findCombination = function (len, index, s) {
+        if (index === len) {
+            res.push(s);
+            return
+        }
+        let c = digits[index]
+        let map = [" ", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"];
+        if (c < 0 || c > 9 || c === 1) return;
+        let letters = map[parseInt(c)];
+        for (let i = 0; i < letters.length; i++) {
+            findCombination(digits.length, index + 1, s + letters[i])
+        }
+    };
+    findCombination(digits.length, 0, "");
+    return res
+};
+console.log(letterCombinations("2"))
 
-//     // Picks a letter, then recurses on the next digit.
-//     const letters = DIGIT_TO_LETTERS[digits[index]];
-//     for (let i = 0; i < letters.length; i++) {
-//         findCombinations(digits, index + 1, prefix + letters[i], output);
-//     }
-// }
